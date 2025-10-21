@@ -138,4 +138,4 @@ cd ./latency/sgx/roberta
 We present the de-obfuscation stage of our Model Stealing attack with Prior against TLG, in ```demo.ipynb``` file under ```attack```. The knockoff code can be found in [here](https://github.com/tribhuvanesh/knockoffnets).
 
 ### Acknowledgements
-The code is only available for review on NeurIPS 2025, please do not distribute.
+The project is released under MIT License.
