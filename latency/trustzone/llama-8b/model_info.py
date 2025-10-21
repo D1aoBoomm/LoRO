@@ -1,0 +1,10 @@
+layers = 32
+s = 256 # sentence length
+h = 4096 # hidden state size of qkv
+mutihead_num = 32 # multihead number
+group_num = 8 # group query attention
+output_h = 4096 # output hidden size
+r = 36 # rank
+inference_type = 0 # 0 for loro, 1 for full matrix
+classification_num = 128288 # head size
+ffn_h = 14336 # intermediate hidden state size

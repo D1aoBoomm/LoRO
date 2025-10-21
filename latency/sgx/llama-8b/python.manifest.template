@@ -1,0 +1,67 @@
+# Copyright (C) 2023 Gramine contributors
+# SPDX-License-Identifier: BSD-3-Clause
+
+# Python3 manifest example
+loader.entrypoint = "file:{{ gramine.libos }}"
+libos.entrypoint = "{{ entrypoint }}"
+
+loader.log_level = "{{ log_level }}"
+
+loader.env.LD_LIBRARY_PATH = "/lib:/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
+
+# Python's NumPy spawns as many threads as there are CPU cores, and each thread
+# consumes a chunk of memory, so on large machines 1G enclave size may be not enough.
+# We limit the number of spawned threads via OMP_NUM_THREADS env variable.
+loader.env.OMP_NUM_THREADS = "1"
+
+loader.insecure__use_cmdline_argv = true
+
+sys.enable_sigterm_injection = true
+
+fs.mounts = [
+  { path = "/home/xgj/anaconda3/lib", uri = "file:/home/xgj/anaconda3/lib" },
+  { path = "/home/xgj/xgj/sgx/our_c_lib", uri = "file:/home/xgj/xgj/sgx/our_c_lib" },
+  { path = "/lib", uri = "file:{{ gramine.runtimedir() }}" },
+  { path = "{{ arch_libdir }}", uri = "file:{{ arch_libdir }}" },
+  { path = "/usr/{{ arch_libdir }}", uri = "file:/usr/{{ arch_libdir }}" },
+{% for path in python.get_sys_path(entrypoint) %}
+  { path = "{{ path }}", uri = "file:{{ path }}" },
+{% endfor %}
+  { path = "{{ entrypoint }}", uri = "file:{{ entrypoint }}" },
+  { type = "tmpfs", path = "/tmp" },
+  { type = "tmpfs", path = "/dev/shm" },
+#  { type = "untrusted_shm", path = "/dev/shm/", uri = "file:/dev/shm/" },
+]
+sgx.file_check_policy = "allow_all_but_log"
+sys.stack.size = "2M"
+sys.enable_extra_runtime_domain_names_conf = true
+
+sgx.preheat_enclave = false
+sgx.debug = false
+sgx.edmm_enable = false
+sgx.enclave_size = "2G"
+sgx.max_threads = {{ '1' if env.get('EDMM', '0') == '1' else '32' }}
+
+sgx.remote_attestation = "{{ ra_type }}"
+sgx.ra_client_spid = "{{ ra_client_spid }}"
+sgx.ra_client_linkable = {{ 'true' if ra_client_linkable == '1' else 'false' }}
+
+sgx.trusted_files = [
+  "file:/home/xgj/anaconda3/lib/",
+  "file:/home/xgj/xgj/sgx/our_c_lib/",
+  "file:{{ entrypoint }}",
+  "file:{{ gramine.runtimedir() }}/",
+  "file:{{ arch_libdir }}/",
+  "file:/usr/{{ arch_libdir }}/",
+{% for path in python.get_sys_path(entrypoint) %}
+  "file:{{ path }}{{ '/' if path.is_dir() else '' }}",
+{% endfor %}
+  "file:scripts/",
+  "file:results/",
+]
+
+sgx.allowed_files = [
+  "file:results/",
+  "file:scriptes/",
+  "file:/home/xgj/xgj/sgx/our_c_lib/",
+]
