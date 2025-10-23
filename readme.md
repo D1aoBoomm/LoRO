@@ -1,6 +1,7 @@
 # Code for "LoRO: Real-Time on-Device Secure Inference for LLMs via TEE-Based Low Rank Obfuscation"
 
 The code for implementing the LoRO: Real-Time on-Device Secure Inference for LLMs via TEE-Based Low Rank Obfuscation.
+**An example on how to use on OPTEE will be released soon.**
 
 ## Requirements
 Since our experiments is conducted on three different platforms: **Workstation, Nvidia Orin NX Board with TrustZone, and Laptop with SGX**, we provide the detailed requirements for each platform.
