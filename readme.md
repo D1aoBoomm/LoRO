@@ -1,7 +1,10 @@
 # Code for "LoRO: Real-Time on-Device Secure Inference for LLMs via TEE-Based Low Rank Obfuscation"
 
 The code for implementing the LoRO: Real-Time on-Device Secure Inference for LLMs via TEE-Based Low Rank Obfuscation.
-**An example on how to use on OPTEE will be released soon.**
+
+Paper is available here at
+https://openreview.net/pdf?id=de07K7kreI
+
 
 ## Requirements
 Since our experiments is conducted on three different platforms: **Workstation, Nvidia Orin NX Board with TrustZone, and Laptop with SGX**, we provide the detailed requirements for each platform.
@@ -137,6 +140,18 @@ cd ./latency/sgx/roberta
 
 ## Attack
 We present the de-obfuscation stage of our Model Stealing attack with Prior against TLG, in ```demo.ipynb``` file under ```attack```. The knockoff code can be found in [here](https://github.com/tribhuvanesh/knockoffnets).
+
+### Cite
+```
+@inproceedings{
+xiong2025loro,
+title={Lo{RO}: Real-Time on-Device Secure Inference for {LLM}s via {TEE}-Based Low Rank Obfuscation},
+author={Gaojian Xiong and Yu Sun and Jianhua Liu and Jian Cui and Jianwei Liu},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=de07K7kreI}
+}
+```
 
 ### Acknowledgements
 The project is released under MIT License.
