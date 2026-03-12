@@ -5,6 +5,8 @@ The code for implementing the LoRO: Real-Time on-Device Secure Inference for LLM
 Paper is available here at
 https://openreview.net/pdf?id=de07K7kreI
 
+## Update
+A LoRO demo (OPTEE) on MNIST is updated on 2026/03/12, please view the MNIST_DEMO folder for more details.
 
 ## Requirements
 Since our experiments is conducted on three different platforms: **Workstation, Nvidia Orin NX Board with TrustZone, and Laptop with SGX**, we provide the detailed requirements for each platform.
