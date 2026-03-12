@@ -42,6 +42,8 @@ python train.py
 This will train an MNIST classifier and save weights to `weights/mnist_model.pt`.
 
 ### 4. Build the TEE Application
+Perhaps you need to modify the OPTEE lib path or something else in ```compile.sh``` and ```install_ta.sh``` according to your own setting.
+
 ```bash
 ./compile.sh
 ```
